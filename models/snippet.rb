@@ -1,6 +1,5 @@
 require 'dm-core'
 
-#DataMapper.setup( :default, "mysql://root:sysadmin@localhost/test" )
 DataMapper.setup( :default, "appengine://auto")
 
 class Snippet
@@ -11,5 +10,3 @@ class Snippet
 	property :insert_date,	Time, :default => lambda { |r, p| Time.now }
 	property :user_id, 		Integer
 end
-
-#DataMapper.auto_migrate!
