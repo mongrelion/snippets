@@ -105,7 +105,7 @@ get '/snippets' do
 	result = "<body>"
 	snippets = Snippet.all
 	snippets.each do |snip|
-		result += "<p>#{ snip.title.to_s }<br />Posted by <a href='/snippets/user/#{ snip.user_nickname.to_s }'>#{ snip.user_nickname.to_s }</a><br /> <pre class='brush: #{ snip.lang.to_s };'>#{h snip.code.to_s }</pre><br /></p>"
+		result += "<p>#{ snip.title.to_s }<br />Posted by <a href='/snippets/user/#{ snip.user_nickname.to_s }'>#{ snip.user_nickname.to_s }</a> on #{ snip.insert_date }, language <a href='/snippets/lang/#{ snip.lang }'>#{ snip.lang }</a><br /> <pre class='brush: #{ snip.lang.to_s };'>#{h snip.code.to_s }</pre><br /></p>"
 	end
 	result += "</body></html>"
 	return baseHTML() + result
@@ -115,7 +115,17 @@ get '/snippets/user/:username' do
 	result = "<body>"
 	snippets = Snippet.all(:user_nickname => params[:username ])
 	snippets.each do |snip|
-		result += "<p>#{ snip.title.to_s }<br />Posted by <a href='/snippets/user/#{ snip.user_nickname.to_s }'>#{ snip.user_nickname.to_s }</a><br /> <pre class='brush: #{ snip.lang.to_s };'>#{h snip.code.to_s }</pre><br /></p>"
+		result += "<p>#{ snip.title.to_s }<br />Posted by <a href='/snippets/user/#{ snip.user_nickname.to_s }'>#{ snip.user_nickname.to_s }</a> on #{ snip.insert_date }, language <a href='/snippets/lang/#{ snip.lang }'>#{ snip.lang }</a><br /> <pre class='brush: #{ snip.lang.to_s };'>#{h snip.code.to_s }</pre><br /></p>"
+	end
+	result += "</body></html>"
+	return baseHTML() + result
+end
+
+get '/snippets/lang/:language' do
+	result = "<body>"
+	snippets = Snippet.all(:lang => params[:language ])
+	snippets.each do |snip|
+		result += "<p>#{ snip.title.to_s }<br />Posted by <a href='/snippets/user/#{ snip.user_nickname.to_s }'>#{ snip.user_nickname.to_s }</a> on #{ snip.insert_date }, language <a href='/snippets/lang/#{ snip.lang }'>#{ snip.lang }</a><br /> <pre class='brush: #{ snip.lang.to_s };'>#{h snip.code.to_s }</pre><br /></p>"
 	end
 	result += "</body></html>"
 	return baseHTML() + result
