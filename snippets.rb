@@ -1,7 +1,7 @@
 require 'sinatra'
+require 'dm-core'
 require 'appengine-apis/users'
 require 'models/snippet'
-require 'models/user'
 
 def baseHTML 
   str = "<html>
@@ -30,6 +30,8 @@ def baseHTML
 			SyntaxHighlighter.config.clipboardSwf = 'scripts/clipboard.swf';
 			SyntaxHighlighter.all();
 		</script>
+		<a href='/snippets/new'>Create a new snippet</a><br />
+		<a href='/snippets'>List all snippets</a><br />
 	</head>"
   return str
 end
@@ -39,53 +41,72 @@ helpers do
 	alias_method :h, :escape_html
 end
 
-get '/form/:userID' do
+get '/' do
+  return baseHTML()
+end
+
+get '/snippets/new' do
+  user = AppEngine::Users.current_user
+  if user
 	"<html>
 	  <head>
 	    <title>DevCO Snippets App</title>
+	    <p><b> #{ user.nickname  }</b>, start typing your code =)</p><br />
 	  </head>
 	  <body>
-	    <form action='/createSnippet' method='post'>
+	    <form action='/snippets/new' method='post'>
+	      <div><select name='lang'>
+                     <option value='bash'>Bash/Shell</option>
+		     <option value='csharp'>C#</option>
+		     <option value='css'>CSS</option>
+                     <option value='js'>JavaScript</option>
+		     <option value='java'>Java</option>
+		     <option value='php'>PHP</option>
+                     <option value='text'>Plain Text</option>
+		     <option value='py'>Python</option>
+		     <option value='ruby'>Ruby/Ruby on Rails</option>
+		     <option value='sql'>SQL</option>
+		   </select>
+	      </div>
 	      <div><input type='text' name='title' size='80' /></div>
-	      <div><textarea name='snippet' rows='20' cols='80' ></textarea></div>
-	      <input type='hidden' name='userID' value=#{ params[:userID]} />
+	      <div><textarea name='code' rows='20' cols='70' ></textarea></div>
+	      <input type='hidden' name='user_nickname' value=#{ user.nickname } />
 	      <input type='submit' value='Save' />
 	    </form>
 	  </body>
 	 </html>
 	"
+  else
+    redirect AppEngine::Users.create_login_url( '/' )
+  end
 end
 
-post '/createSnippet' do
+post '/snippets/new' do
 
-	# Recuperar los datos que llegan por parámetro:
-	title	= params[ :title ]
-	code	= params[ :snippet ]
-	userID	= params[ :userID ]
+	# Recuperar los datos que llegan por parÃ¡tro:
+	title		= params[ :title ]
+	code		= params[ :code ]
+	lang		= params[ :lang ]
+	user_nickname	= params[ :user_nickname ]
 	
 	# Hacer persistentes los datos que hemos recuperado.
-	snippet = Snippet.new( :title => title, :body => code, :user_id => userID )
+	snippet = Snippet.new( :title => title, :code => code, :lang => lang, :user_nickname => user_nickname )
 	snippet.save
 
 	result = "<body>You wrote:<br />
-			  <pre class='brush: c-sharp;'>#{h params[ :snippet ]}</pre>
+			  <pre class='brush: c-sharp;'>#{h params[ :code ]}</pre><br />
+			  <p>Lang: #{ snippet.lang }</p><br />
 			  </body>
 			  </html>"
 	return baseHTML() + result
 end
 
-get '/list' do
+get '/snippets' do
 	result = "<body>"
 	snippets = Snippet.all
 	snippets.each do |snip|
-		result += "<p>#{ snip.title.to_s }<br />Posted by #{ User.get( snip.user_id ).name.to_s }<br /> <pre class='brush: c-sharp;'>#{ snip.body.to_s }</pre><br /></p>"
+		result += "<p>#{ snip.title.to_s }<br />Posted by #{ snip.user_nickname.to_s }<br /> <pre class='brush: #{ snip.lang.to_s };'>#{ snip.code.to_s }</pre><br /></p>"
 	end
-	result += "</html></body>"
+	result += "</body></html>"
 	return baseHTML() + result
-end
-
-get '/createUser/:name' do
-	user = User.new( :name => params[ :name ] )
-	user.save
-	return "Id generated for user #{ params[ :name ] }:" + user.user_id.to_s
 end
