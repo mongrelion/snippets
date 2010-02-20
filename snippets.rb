@@ -105,7 +105,7 @@ get '/snippets' do
 	result = "<body>"
 	snippets = Snippet.all
 	snippets.each do |snip|
-		result += "<p>#{ snip.title.to_s }<br />Posted by #{ snip.user_nickname.to_s }<br /> <pre class='brush: #{ snip.lang.to_s };'>#{ snip.code.to_s }</pre><br /></p>"
+		result += "<p>#{ snip.title.to_s }<br />Posted by #{ snip.user_nickname.to_s }<br /> <pre class='brush: #{ snip.lang.to_s };'>#{h snip.code.to_s }</pre><br /></p>"
 	end
 	result += "</body></html>"
 	return baseHTML() + result
