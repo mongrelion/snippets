@@ -9,5 +9,5 @@ class Snippet
 	property :code, 		Text
 	property :lang,			String
 	property :insert_date,		Time, :default => lambda { |r, p| Time.now }
-	property :user_nickname, 	Integer
+	property :user_nickname, 	String
 end
