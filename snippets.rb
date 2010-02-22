@@ -51,11 +51,12 @@ get '/snippets/new' do
   if user
 	"<html>
 	  <head>
+            <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 	    <title>DevCO Snippets App</title>
 	    <p><b> #{ user.nickname  }</b>, start typing your code =)</p><br />
 	  </head>
 	  <body>
-	    <form action='/snippets/new' method='post'>
+	    <form name='NewSnippet' action='/snippets/new' method='post'>
 	      <div><select name='lang'>
                      <option value='as3'>ActionScript3</option>
                      <option value='bash'>Bash/Shell</option>
