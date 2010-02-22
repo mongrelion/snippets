@@ -116,7 +116,7 @@ end
 
 get '/snippets' do
 	result = "<body>"
-	snippets = Snippet.all
+	snippets = Snippet.all( :order => [ :insert_date.desc ] )
 	snippets.each do |snip|
 		result += "<p>#{ snip.title.to_s }<br />Posted by <a href='/snippets/user/#{ snip.user_nickname.to_s }'>#{ snip.user_nickname.to_s }</a> on #{ snip.insert_date }, language <a href='/snippets/lang/#{ snip.lang }'>#{ snip.lang }</a><br /> <pre class='brush: #{ snip.lang.to_s };'>#{h snip.code.to_s }</pre><br /></p>"
 	end
