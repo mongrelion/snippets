@@ -56,16 +56,27 @@ get '/snippets/new' do
 	  <body>
 	    <form action='/snippets/new' method='post'>
 	      <div><select name='lang'>
+                     <option value='as3'>ActionScript3</option>
                      <option value='bash'>Bash/Shell</option>
 		     <option value='csharp'>C#</option>
+                     <option value='cpp'>C++</option>
 		     <option value='css'>CSS</option>
+                     <option value='delphi'>Delphi/Pascal</option>
+                     <option value='diff'>Diff</option>
+                     <option value='groovy'>Groovy</option>
                      <option value='js'>JavaScript</option>
 		     <option value='java'>Java</option>
+                     <option value='jfx'>JavaFX</option>
+                     <option value='pl'>Perl</option>
 		     <option value='php'>PHP</option>
                      <option value='text'>Plain Text</option>
+                     <option value='ps'>PowerShell</option>
 		     <option value='py'>Python</option>
 		     <option value='ruby'>Ruby/Ruby on Rails</option>
+                     <option value='scala'>Scala</option>
 		     <option value='sql'>SQL</option>
+                     <option value='vbnet'>Visual Basic/VB.NET</option>
+                     <option value='xml'>XML/XHTML/HTML</option>
 		   </select>
 	      </div>
 	      <div><input type='text' name='title' size='80' /></div>
