@@ -6,6 +6,7 @@ require 'models/snippet'
 def baseHTML 
   str = "<html>
 		<head>
+                <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 		<script type='text/javascript' src='scripts/shCore.js'></script>
 		<script type='text/javascript' src='scripts/shBrushBash.js'></script>
 		<script type='text/javascript' src='scripts/shBrushCpp.js'></script>
