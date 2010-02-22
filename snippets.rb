@@ -6,6 +6,7 @@ require 'models/snippet'
 def baseHTML 
   str = "<html>
 		<head>
+                <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 		<script type='text/javascript' src='scripts/shCore.js'></script>
 		<script type='text/javascript' src='scripts/shBrushBash.js'></script>
 		<script type='text/javascript' src='scripts/shBrushCpp.js'></script>
@@ -50,22 +51,34 @@ get '/snippets/new' do
   if user
 	"<html>
 	  <head>
+            <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 	    <title>DevCO Snippets App</title>
 	    <p><b> #{ user.nickname  }</b>, start typing your code =)</p><br />
 	  </head>
 	  <body>
-	    <form action='/snippets/new' method='post'>
+	    <form name='NewSnippet' action='/snippets/new' method='post'>
 	      <div><select name='lang'>
+                     <option value='as3'>ActionScript3</option>
                      <option value='bash'>Bash/Shell</option>
 		     <option value='csharp'>C#</option>
+                     <option value='cpp'>C++</option>
 		     <option value='css'>CSS</option>
+                     <option value='delphi'>Delphi/Pascal</option>
+                     <option value='diff'>Diff</option>
+                     <option value='groovy'>Groovy</option>
                      <option value='js'>JavaScript</option>
 		     <option value='java'>Java</option>
+                     <option value='jfx'>JavaFX</option>
+                     <option value='pl'>Perl</option>
 		     <option value='php'>PHP</option>
                      <option value='text'>Plain Text</option>
+                     <option value='ps'>PowerShell</option>
 		     <option value='py'>Python</option>
 		     <option value='ruby'>Ruby/Ruby on Rails</option>
+                     <option value='scala'>Scala</option>
 		     <option value='sql'>SQL</option>
+                     <option value='vbnet'>Visual Basic/VB.NET</option>
+                     <option value='xml'>XML/XHTML/HTML</option>
 		   </select>
 	      </div>
 	      <div><input type='text' name='title' size='80' /></div>
@@ -103,7 +116,7 @@ end
 
 get '/snippets' do
 	result = "<body>"
-	snippets = Snippet.all
+	snippets = Snippet.all( :order => [ :insert_date.desc ] )
 	snippets.each do |snip|
 		result += "<p>#{ snip.title.to_s }<br />Posted by <a href='/snippets/user/#{ snip.user_nickname.to_s }'>#{ snip.user_nickname.to_s }</a> on #{ snip.insert_date }, language <a href='/snippets/lang/#{ snip.lang }'>#{ snip.lang }</a><br /> <pre class='brush: #{ snip.lang.to_s };'>#{h snip.code.to_s }</pre><br /></p>"
 	end
