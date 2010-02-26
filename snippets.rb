@@ -37,11 +37,11 @@ post '/snippet/new' do
 end
 
 get '/user/:username' do
-	@snippets = Snippet.all( :user_nickname => params[ :username ] )
+	@snippets = Snippet.all( :user_nickname => params[ :username ], :order => [ :insert_date.desc ] )
 	erb :snippets
 end
 
 get '/lang/:language' do
-	@snippets = Snippet.all( :lang => params[ :language ] )
+	@snippets = Snippet.all( :lang => params[ :language ], :order => [ :insert_date.desc ] )
 	erb :snippets
 end
