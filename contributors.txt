@@ -1,0 +1,8 @@
+Author
+==================
+Carlos León <carlos.leon@dev-co.org>
+
+
+Contributors
+==================
+Andrés Felipe Vargas <andphe@dev-co.org>
