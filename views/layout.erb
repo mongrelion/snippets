@@ -1,5 +1,7 @@
-<html>
-  <head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Free Template by Alexandre Joseph</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script type="text/javascript" src="/scripts/shCore.js"></script>
     <script type="text/javascript" src="/scripts/shBrushBash.js"></script>
@@ -21,15 +23,46 @@
     <script type="text/javascript" src="/scripts/shBrushXml.js"></script>
     <link type="text/css" rel="stylesheet" href="/styles/shCore.css"/>
     <link type="text/css" rel="stylesheet" href="/styles/shThemeDefault.css"/>
+    <link rel="stylesheet" type="text/css" href="/styles/styles.css" media="screen" />
     <script type="text/javascript">
       SyntaxHighlighter.config.clipboardSwf = "/scripts/clipboard.swf";
       SyntaxHighlighter.all();
     </script>
-    <title>All snippets</title>
-  <a href="/">Home</a><br />
-  <a href="/snippet/new">New snippet</a><br />
+    <link rel="shortcut icon" href="images/favicon.ico" />
   </head>
-  <body>
+  <body id="haut">
+    <div id="page">
+      <div id="header">
+        <h1><a href="#">#Dev-co Snippets</a></h1>
+      </div>
+      <div id="contenu">
+       <div>
     <%= yield  %>
-  </body>
+  </div>
+</div>
+<div id="menu">
+<h2>Site</h2> 
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/snippet/new">New Snippet</a></li>
+</ul>
+<h2>Les Articles</h2> 
+<ul>
+<li><a href="">Le GIMP</a></li>
+<li><a href="">XHTML/CSS</a></li>
+<li><a href="">PHP/MySQL</a></li>
+<li><a href="">RSS et XML</a></li>
+</ul>
+<h2>Ressources</h2> 
+<ul>
+<li><a href="">Outils</a></li>
+<li><a href="">Tutoriaux</a></li>
+<li><a href="">Articles</a></li>
+</ul>
+</div>
+<div id="footer">
+<p>&copy; www.yoursite.com &middot; <a href="http://alexandrejoseph.com/">Designed by Alexandre Joseph</a>, Thanks to <a href="http://www.help4diabetics.com" target="_blank">Diabetic Supplies</a></p>
+</div>
+</div>
+</body>
 </html>
