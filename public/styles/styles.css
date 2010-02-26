@@ -26,13 +26,16 @@ body{
  background: white;
  padding: 1em;
  color: #707070;
+ text-align: center;
 }
 /* -------------------------------------------------------------------
 Page et styles associés
  ------------------------------------------------------------------- */
 #page{
- width: 755px;
- margin: 0;
+ width: 960px;
+ margin: 0px auto 0px auto;
+ text-align: left;
+ position: relative;
 }
 #access{
 text-align: center;
@@ -54,12 +57,17 @@ Header et styles associés
  height: 61px;
  width: 217px;
  position: absolute;
- top: 0.5em;
- left: 1em;
- background: url(../logo.png) no-repeat;
+ top: -5.5em;
+ right: 1em;
 }
-#header h1{
- display: none
+
+#header h1 a {
+ display: block;
+ text-indent: -9999em;
+ height: 61px;
+ width: 217px;
+ background: url(../logo.png) no-repeat;
+
 }
 /* -------------------------------------------------------------------
 Contenu et styles associés
@@ -103,7 +111,7 @@ Menu et styles associés
 }
 #menu {
  position: absolute;
- top: 9em;
+ top: 0em;
  left: 1em;
  width: 155px;
  overflow:hidden;
@@ -151,7 +159,14 @@ input, textarea{
  border: 1px solid #eee;
  background: white;
  color: #999;
+ width: 750px;
+ margin-top: 10px;
 }
+
+input[type="submit"]{
+background-color: #eee;
+}
+
 a:hover{
  color: #e99e39;
 }
@@ -159,3 +174,7 @@ a{
  color: #999;
  text-decoration: none;
 } 
+
+a img {
+ border: none;
+}
