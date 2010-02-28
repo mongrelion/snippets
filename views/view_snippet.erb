@@ -1,0 +1,11 @@
+<div></div>
+<p style="font-size: 10pt;">
+	<a href="/<%= @snippet.snippet_id %>">ID: <%= @snippet.snippet_id %></a> - <%= @snippet.title %>
+	<br />
+	Posted by <a href="/user/<%= @snippet.user_nickname.to_s %>"><%= @snippet.user_nickname.to_s %></a> on <%= @snippet.insert_date %>.
+	Language <a href="/lang/<%= @snippet.lang %>"><%= @snippet.lang %></a><br />
+	<pre class="brush: <%= @snippet.lang.to_s %>;">
+<%= h @snippet.code.to_s %>
+	</pre>
+	<br />
+</p>
