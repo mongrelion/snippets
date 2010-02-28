@@ -45,3 +45,8 @@ get '/lang/:language' do
 	@snippets = Snippet.all( :lang => params[ :language ], :order => [ :insert_date.desc ] )
 	erb :snippets
 end
+
+get '/:snippet_id' do
+	@snippet = Snippet.get( params[:snippet_id] )
+	erb :view_snippet
+end

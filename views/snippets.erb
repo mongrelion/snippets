@@ -1,5 +1,5 @@
     <% @snippets.each do |snip|  %>
-      <p style="font-size: 10pt;"><%= snip.title %><br />
+      <p style="font-size: 10pt;"><a href="/<%= snip.snippet_id %>">View more</a> - <%= snip.title %><br />
         Posted by <a href="/user/<%= snip.user_nickname.to_s%>"><%= snip.user_nickname.to_s %></a> on <%= snip.insert_date %>.
         Language <a href="/lang/<%= snip.lang %>"><%= snip.lang %></a><br />
         <pre class="brush: <%= snip.lang.to_s %>;">
