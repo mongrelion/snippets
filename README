@@ -1,0 +1,11 @@
+From wikipedia:
+"A pastebin is a web application which allows its users to upload snippets of text, 
+usually samples of source code, for public viewing. It is very popular in IRC channels 
+where pasting large amounts of text is considered bad etiquette. A vast number of 
+pastebins exist on the Internet, suiting a number of different needs and provided 
+features tailored towards the crowd they focus on most."
+
+Snippets is a pastebin application made with ruby, runs on the google applicaction engine
+using jruby using sinatra and data_mapper.
+
+For more information contact us at freenode, #dev-co channel.
