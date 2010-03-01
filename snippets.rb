@@ -10,11 +10,13 @@ end
 
 get '/' do
 	@snippets = Snippet.all( :order => [ :insert_date.desc ] )
+        @title    = "#dev-co Snippets"
 	erb :snippets
 end
 
 get '/snippet/new' do
   @user = AppEngine::Users.current_user
+  @title    = "Create a new snippet - #dev-co Snippets"
   if @user
     erb :new_snippet
   else
@@ -38,15 +40,18 @@ end
 
 get '/user/:username' do
 	@snippets = Snippet.all( :user_nickname => params[ :username ], :order => [ :insert_date.desc ] )
+        @title    = "#{params[ :username ]} snippets - #dev-co Snippets"
 	erb :snippets
 end
 
 get '/lang/:language' do
+        @title    = "#{params[ :language ]} snippets - #dev-co Snippets"
 	@snippets = Snippet.all( :lang => params[ :language ], :order => [ :insert_date.desc ] )
 	erb :snippets
 end
 
 get '/:snippet_id' do
 	@snippet = Snippet.get( params[:snippet_id] )
+        @title    = "#{@snippet.title} snippets - #dev-co Snippets"
 	erb :view_snippet
 end
