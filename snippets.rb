@@ -52,6 +52,6 @@ end
 
 get '/:snippet_id' do
 	@snippet = Snippet.get( params[:snippet_id] )
-        @title    = "#{@snippet.title} snippets - #dev-co Snippets"
+        @title    = "#{@snippet.title} - #dev-co Snippets"
 	erb :view_snippet
 end
