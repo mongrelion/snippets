@@ -6,6 +6,6 @@ pastebins exist on the Internet, suiting a number of different needs and provide
 features tailored towards the crowd they focus on most."
 
 Snippets is a pastebin application made with ruby, runs on the google applicaction engine
-using jruby using sinatra and data_mapper.
+using jruby, sinatra and data_mapper.
 
 For more information contact us at freenode, #dev-co channel.
